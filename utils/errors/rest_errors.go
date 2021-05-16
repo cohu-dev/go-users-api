@@ -8,10 +8,18 @@ type RestErr struct {
 	Error   string `json:"error"`
 }
 
-func NewBandleRequestErrer(message string) *RestErr {
+func NewBadRequestError(message string) *RestErr {
 	return &RestErr{
 		Message: message,
 		Status:  http.StatusInternalServerError,
 		Error:   "internal_error",
+	}
+}
+
+func NewNotFoundError(message string) *RestErr {
+	return &RestErr{
+		Message: message,
+		Status:  http.StatusNotFound,
+		Error:   "not found",
 	}
 }
