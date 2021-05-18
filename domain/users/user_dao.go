@@ -3,6 +3,7 @@ package users
 import (
 	"fmt"
 
+	"github.com/cota-eng/go-users-api/utils/date_utils"
 	"github.com/cota-eng/go-users-api/utils/errors"
 )
 
@@ -34,6 +35,7 @@ func (user *User)Save() *errors.RestErr{
 		}
 		return errors.NewBadRequestError(fmt.Sprintf("user %d already exists",user.Id))
 	}
+	user.DateCreated=date_utils.GetNowString()
 	userDB[user.Id]=user
 	return nil
 }
